@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>백서연 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 게임 쇼케이스형 다크 단일 테마. 이미지가 먼저, 게임 이름은 크게, 본문은 넉넉하게. 모서리는 각지게. */
+:root{
+  --bg:#0A0A0B; --panel:#141416; --line:rgba(255,255,255,.12); --line-strong:rgba(255,255,255,.28);
+  --fg:#F4F4F2; --sub:#B9B9B4; --dim:#7D7D78; --accent:#F2B33D;
+  --en:"Barlow Condensed","Arial Narrow",sans-serif;
+  --kr:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--kr);font-size:17px;line-height:1.75;word-break:keep-all;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.in{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;letter-spacing:-0.025em}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.en{font-family:var(--en);text-transform:uppercase;letter-spacing:.06em}
+.num{font-variant-numeric:tabular-nums}
+
+/* Top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(10,10,11,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .in{display:flex;justify-content:space-between;align-items:center;height:60px;gap:16px}
+.top .name{font-family:var(--en);font-weight:700;font-size:20px;letter-spacing:.08em}
+.top nav{display:flex;gap:28px}
+.top nav a{font-family:var(--en);font-weight:600;font-size:16px;letter-spacing:.1em;text-decoration:none;color:var(--sub)}
+.top nav a:hover{color:var(--fg)}
+@media (max-width:640px){.top nav{gap:16px}.top nav a{font-size:14px}.top nav a.opt{display:none}}
+
+/* Hero */
+.hero{position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.hero .bgimg{position:absolute;inset:0;background:url(assets/forsgunner_1.jpg) 70% 30%/cover no-repeat;opacity:.38}
+.hero .bgimg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 20%,rgba(10,10,11,.55) 60%,rgba(10,10,11,.2)),linear-gradient(0deg,var(--bg) 0%,transparent 45%)}
+.hero .in{position:relative;padding-block:96px 56px;display:grid;gap:28px}
+.eyebrow{font-family:var(--en);font-weight:600;font-size:17px;letter-spacing:.14em;color:var(--accent)}
+.hero h1{font-size:clamp(40px,7.2vw,88px);font-weight:900;line-height:1.1;max-width:14ch}
+.hero .lead{font-size:clamp(17px,1.6vw,20px);color:var(--sub);max-width:46ch;line-height:1.7}
+.hero .lead b{color:var(--fg);font-weight:700}
+.scope{margin:0;display:grid;gap:0;max-width:640px;border-top:1px solid var(--line)}
+.scope > div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:4px 20px;padding-block:12px;border-bottom:1px solid var(--line);align-items:baseline}
+.scope dt{font-weight:600;font-size:16px;letter-spacing:.12em;color:var(--accent)}
+.scope dd{margin:0;font-size:17px;font-weight:700}
+.scope dd i{font-style:normal;color:var(--dim);margin:0 4px}
+@media (max-width:560px){.scope > div{grid-template-columns:1fr}}
+.idline{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+.idline strong{font-size:24px;font-weight:900}
+.idline span{color:var(--sub)}
+.idline .en{font-size:18px;color:var(--fg)}
+
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-strong);margin-top:24px}
+.kpi{padding:22px 20px 6px 0;display:grid;gap:6px;align-content:start}
+.kpi + .kpi{padding-left:20px;border-left:1px solid var(--line)}
+.kpi .game{font-family:var(--en);font-weight:700;font-size:18px;letter-spacing:.08em;color:var(--fg)}
+.kpi .v{font-family:var(--en);font-weight:700;font-size:clamp(44px,5vw,60px);line-height:1;color:var(--accent)}
+.kpi .v small{font-family:var(--kr);font-size:.42em;font-weight:700;margin-left:2px}
+.kpi .d{font-size:15px;color:var(--sub);line-height:1.5}
+@media (max-width:860px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:nth-child(3){padding-left:0;border-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* Section head */
+.sec{border-bottom:1px solid var(--line)}
+.sec > .in{padding-block:104px 40px}
+.sechead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:20px 64px;align-items:end;margin-bottom:64px}
+.sechead .idx{font-family:var(--en);font-weight:700;font-size:clamp(64px,10vw,128px);line-height:.85;letter-spacing:.01em;color:transparent;-webkit-text-stroke:1px var(--line-strong)}
+.sechead h2{font-size:clamp(30px,3.8vw,44px);font-weight:900;line-height:1.3;margin-top:18px}
+.sechead p{color:var(--sub);font-size:18px;max-width:44ch}
+@media (max-width:860px){.sechead{grid-template-columns:1fr}}
+
+/* Project */
+.proj{display:grid;gap:28px;padding-block:56px;border-top:1px solid var(--line)}
+.proj:first-of-type{border-top:0;padding-top:0}
+.gamebar{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px}
+.gamebar .game{font-family:var(--en);font-weight:700;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:.02em}
+.gamebar .game span{font-family:var(--kr);font-weight:700;font-size:.38em;letter-spacing:0;color:var(--sub);margin-left:12px;vertical-align:middle}
+.gamebar .when{font-family:var(--en);font-weight:600;font-size:17px;letter-spacing:.12em;color:var(--sub)}
+.gamebar .when b{color:var(--accent);font-weight:600;margin-right:12px}
+
+.visual{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:6px}
+.visual .main{aspect-ratio:16/9}
+.visual .side{display:grid;gap:6px;grid-template-rows:repeat(3,minmax(0,1fr))}
+.visual.two .side{grid-template-rows:repeat(2,minmax(0,1fr))}
+.visual img{width:100%;height:100%;object-fit:cover;background:var(--panel)}
+.visual figure{margin:0;overflow:hidden;min-height:0}
+@media (max-width:760px){.visual{grid-template-columns:1fr}.visual .side,.visual.two .side{grid-template-rows:none;grid-template-columns:repeat(3,minmax(0,1fr))}.visual.two .side{grid-template-columns:repeat(2,minmax(0,1fr))}.visual .side figure{aspect-ratio:16/9}}
+
+.body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:24px 64px}
+@media (max-width:860px){.body{grid-template-columns:1fr}}
+.body h3{font-size:clamp(23px,2.4vw,30px);font-weight:900;line-height:1.4}
+.res{display:flex;align-items:baseline;gap:12px;margin-top:20px;flex-wrap:wrap}
+.res .v{font-family:var(--en);font-weight:700;font-size:56px;line-height:1;color:var(--accent)}
+.res .v small{font-family:var(--kr);font-size:.4em;font-weight:700;margin-left:2px}
+.res .d{color:var(--sub);font-size:16px}
+.cap{font-size:14px;color:var(--dim);margin-top:14px}
+dl.steps{margin:0;display:grid;gap:0}
+dl.steps > div{display:grid;grid-template-columns:72px minmax(0,1fr);gap:16px;padding-block:16px;border-top:1px solid var(--line)}
+dl.steps > div:last-child{border-bottom:1px solid var(--line)}
+dl.steps dt{font-family:var(--en);font-weight:600;font-size:16px;letter-spacing:.12em;color:var(--accent);padding-top:2px}
+dl.steps dd{margin:0;color:var(--fg)}
+
+.hookpanel{background:var(--panel);border:1px solid var(--line);padding:clamp(28px,4vw,48px);display:grid;gap:32px}
+.hookpanel .hook{font-size:clamp(22px,3vw,34px);font-weight:900;line-height:1.45}
+.hookpanel .hook::before{content:"“";display:block;font-family:var(--en);font-size:64px;line-height:.6;color:var(--accent);margin-bottom:12px}
+.hookpanel .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.hookpanel .stats div{display:grid;gap:4px;padding:18px 14px 0 0}
+.hookpanel .stats div + div{padding-left:18px;border-left:1px solid var(--line)}
+.hookpanel .stats .v{font-family:var(--en);font-weight:700;font-size:clamp(32px,4vw,44px);line-height:1;color:var(--accent)}
+.hookpanel .stats .v small{font-family:var(--kr);font-size:.45em;font-weight:700}
+.hookpanel .stats .d{font-size:14px;color:var(--sub);line-height:1.5}
+
+/* Measure */
+.ops{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px}
+.ops span{border:1px solid var(--line-strong);padding:8px 16px;font-size:15px}
+.ops span b{font-family:var(--en);font-weight:700;letter-spacing:.06em;margin-right:8px;font-size:17px}
+.pipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line)}
+.node{padding:28px 24px;display:grid;gap:8px;align-content:start;position:relative}
+.node + .node{border-left:1px solid var(--line)}
+.node .en{font-weight:600;font-size:15px;letter-spacing:.14em;color:var(--dim)}
+.node strong{font-size:20px;font-weight:900;line-height:1.4}
+.node p{font-size:15px;color:var(--sub);line-height:1.6}
+.node.hl{background:var(--panel)}
+.node.hl .en{color:var(--accent)}
+.node + .node::before{content:"";position:absolute;left:-7px;top:34px;width:12px;height:12px;background:var(--bg);border-top:1px solid var(--line-strong);border-right:1px solid var(--line-strong);transform:rotate(45deg)}
+@media (max-width:860px){.pipe{grid-template-columns:1fr}.node + .node{border-left:0;border-top:1px solid var(--line)}.node + .node::before{left:28px;top:-7px;transform:rotate(135deg)}}
+
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:64px}
+@media (max-width:860px){.cases{grid-template-columns:1fr}}
+.case{border-top:2px solid var(--fg);padding-top:24px;display:grid;gap:16px;align-content:start}
+.case .game{font-family:var(--en);font-weight:700;font-size:clamp(30px,3.4vw,40px);line-height:1;letter-spacing:.02em}
+.case .game span{font-family:var(--kr);font-size:.42em;font-weight:700;color:var(--sub);margin-left:10px;letter-spacing:0;vertical-align:middle}
+.case h3{font-size:22px;font-weight:900;line-height:1.45}
+.case p{color:var(--sub)}
+.bars{display:grid;gap:10px;margin-top:8px}
+.bar{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;font-size:14px;color:var(--sub)}
+.bar .fill{height:40px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:flex-end;padding-right:12px;font-family:var(--en);font-weight:600;font-size:19px;letter-spacing:.04em;color:var(--fg)}
+.bar.after .fill{background:var(--accent);color:var(--bg)}
+.case .delta{font-family:var(--en);font-weight:700;font-size:44px;line-height:1;color:var(--accent)}
+.case .note{font-size:14px;color:var(--dim)}
+
+/* Scale */
+.stack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line)}
+.layer{padding:32px 28px;display:grid;gap:14px;align-content:start}
+.layer + .layer{border-left:1px solid var(--line)}
+.layer .en{font-weight:600;font-size:15px;letter-spacing:.14em;color:var(--accent)}
+.layer h3{font-size:22px;font-weight:900}
+.layer ul{margin:0;padding-left:18px;color:var(--sub);display:grid;gap:6px;font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line-strong);padding:4px 12px;font-size:14px}
+@media (max-width:860px){.stack{grid-template-columns:1fr}.layer + .layer{border-left:0;border-top:1px solid var(--line)}}
+
+.skill{margin-top:80px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:32px 64px;align-items:start}
+@media (max-width:960px){.skill{grid-template-columns:1fr}}
+.skill .txt{display:grid;gap:16px}
+.skill .txt h3{font-size:clamp(24px,2.6vw,32px);font-weight:900;line-height:1.35}
+.skill .txt p{color:var(--sub)}
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:6px}
+.ba figure{margin:0;display:grid;gap:10px}
+.ba img{width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--panel)}
+.ba figcaption{font-size:14px;color:var(--sub)}
+.ba figcaption b{font-family:var(--en);font-weight:700;font-size:16px;letter-spacing:.1em;color:var(--fg);margin-right:8px}
+.ba figure:nth-child(2) figcaption b{color:var(--accent)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:72px;align-items:center}
+.tools .en{font-weight:600;font-size:15px;letter-spacing:.14em;color:var(--dim);margin-right:8px}
+.tools span:not(.en){border:1px solid var(--line);padding:6px 14px;font-size:14px;color:var(--sub)}
+
+/* Closing */
+.closing .in{padding-block:120px 72px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:56px 80px}
+@media (max-width:860px){.closing .in{grid-template-columns:1fr}}
+.closing blockquote{margin:0;font-size:clamp(24px,3vw,36px);font-weight:900;line-height:1.55}
+.closing blockquote em{font-style:normal;color:var(--accent)}
+.contact{display:grid;gap:0;align-content:start;border-top:1px solid var(--line-strong)}
+.contact .row{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding-block:18px;flex-wrap:wrap}
+.contact .row > div{min-width:0;display:grid;gap:2px}
+.contact .en{font-weight:600;font-size:14px;letter-spacing:.14em;color:var(--dim)}
+.contact .addr{font-size:18px;font-weight:500;user-select:all;overflow-wrap:anywhere}
+.contact button{font:inherit;font-size:14px;border:1px solid var(--line-strong);background:transparent;color:var(--fg);padding:6px 14px;cursor:pointer}
+.contact button:hover{border-color:var(--accent);color:var(--accent)}
+.sign{margin-top:28px;display:grid;gap:2px}
+.sign strong{font-size:28px;font-weight:900}
+.sign span{font-family:var(--en);font-size:20px;letter-spacing:.08em;color:var(--sub)}
+footer .in{padding-block:24px 48px;color:var(--dim);font-size:13px;border-top:1px solid var(--line)}
+
+@media (prefers-reduced-motion:no-preference){.visual img,.ba img{transition:transform .6s ease}.visual figure:hover img{transform:scale(1.03)}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <span class="name">BAEK SEOYEON</span>
+    <nav aria-label="섹션">
+      <a href="#create">CREATE</a><a href="#measure">MEASURE</a><a href="#scale">SCALE</a><a class="opt" href="#contact">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="bgimg" aria-hidden="true"></div>
+  <div class="in">
+    <p class="eyebrow">KRAFTON 2027 INTERNSHIP · MARKETING</p>
+    <h1>더 넓은 가능성을 만드는 AI 인재</h1>
+    <p class="lead">AI로 광고를 만들고, 데이터로 성과를 확인하고,<br>팀 전체가 쓰는 제작 시스템으로 넓혀 왔습니다.</p>
+    <dl class="scope">
+      <div><dt class="en">AI Creative</dt><dd>CABAL RED <i>·</i> CABAL 온라인 <i>·</i> 고양이다방</dd></div>
+      <div><dt class="en">AI Performance</dt><dd>CABAL Mobile Japan <i>·</i> CABAL 글로벌 브랜드사이트</dd></div>
+    </dl>
+    <div class="idline"><strong>백서연</strong><span class="en">Beck Seo Yeon</span><span>게임 마케터</span></div>
+    <div class="kpis">
+      <div class="kpi"><span class="game">CABAL RED</span><span class="v num">129<small>만</small></span><span class="d">포스거너 광고영상 조회수</span></div>
+      <div class="kpi"><span class="game">고양이다방</span><span class="v num">+250<small>%</small></span><span class="d">AI 광고 후 설치 수 (전월 대비)</span></div>
+      <div class="kpi"><span class="game">CABAL MOBILE</span><span class="v num">+20<small>%</small></span><span class="d">일본 광고 ROAS (전월 대비)</span></div>
+      <div class="kpi"><span class="game">CABAL 브랜드사이트</span><span class="v num">×2</span><span class="d">월 페이지 조회 수 1만 → 2만</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 CREATE -->
+<section class="sec" id="create">
+  <div class="in">
+    <div class="sechead">
+      <div><span class="idx en" aria-hidden="true">01 Create</span><h2>AI로 만든 광고가<br>실제 성과를 냈습니다</h2></div>
+      <p>신규 클래스, 신규 서버, 신작 홍보, 복귀 유저 유입. 목적이 다른 네 개의 캠페인에서 AI로 영상을 만들고 조회수와 설치 수로 결과를 확인했습니다.</p>
+    </div>
+
+    <article class="proj">
+      <div class="gamebar"><h3 class="game en">CABAL RED<span>카발 레드</span></h3><span class="when en"><b>AI 광고영상</b>2026.07</span></div>
+      <div class="visual">
+        <figure class="main"><img src="assets/forsgunner_1.jpg" alt="포스거너 AI 장면: 보라색 머리의 포스거너가 쌍권총을 겨누고 타이틀이 뜨는 장면"></figure>
+        <div class="side">
+          <figure><img src="assets/forsgunner_2.jpg" alt="AI 장면: 황무지에서 다가오는 언데드 몬스터"></figure>
+          <figure><img src="assets/forsgunner_3.jpg" alt="AI 장면: 포스거너의 눈을 클로즈업한 장면"></figure>
+          <figure><img src="assets/forsgunner_4.jpg" alt="AI 장면: 포스거너가 총을 발사하는 장면"></figure>
+        </div>
+      </div>
+      <div class="body">
+        <div>
+          <h3>신규 클래스 ‘포스거너’ 광고영상의 도입부 15초 AI 장면</h3>
+          <div class="res"><span class="v num">129<small>만 회</small></span><span class="d">YouTube 조회수</span></div>
+          <p class="cap">AI로 만든 도입부 15초 장면 캡처</p>
+        </div>
+        <dl class="steps">
+          <div><dt>GOAL</dt><dd>신규 클래스 업데이트를 알리고 기존·복귀 유저의 관심 끌기</dd></div>
+          <div><dt>ROLE</dt><dd>30초 광고영상 중 시선을 잡는 도입부 15초를 AI로 기획·제작. 몰려오는 언데드와 포스거너의 눈빛, 총격으로 이어지는 장면 흐름으로 클래스를 소개</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="gamebar"><h3 class="game en">CABAL RED<span>카발 레드</span></h3><span class="when en"><b>AI 씬 제작</b>2026.05</span></div>
+      <div class="visual two">
+        <figure class="main"><img src="assets/neptune_1.jpg" alt="넵튠 홍보영상 AI 장면: 고대 석벽 앞에 선 캐릭터의 뒷모습"></figure>
+        <div class="side">
+          <figure><img src="assets/neptune_2.jpg" alt="AI 장면: 석벽에 손을 대는 캐릭터"></figure>
+          <figure><img src="assets/neptune_3.jpg" alt="AI 장면: 손이 닿은 석벽에서 푸른 빛이 갈라지는 장면"></figure>
+        </div>
+      </div>
+      <div class="body">
+        <div>
+          <h3>신규 서버 ‘넵튠’ 사전예약 홍보영상</h3>
+          <div class="res"><span class="v num">38<small>만 회</small></span><span class="d">조회수</span></div>
+          <p class="cap">AI로 만든 오프닝 장면 캡처. 이후 장면은 인게임 영상입니다.</p>
+        </div>
+        <dl class="steps">
+          <div><dt>GOAL</dt><dd>“모두가 같은 출발선”이라는 신서버 메시지 전달, 사전예약 유도</dd></div>
+          <div><dt>ROLE</dt><dd>영상 도입부 AI 씬 제작. 석벽에 손을 대면 서버가 열리는 장면으로 신서버 오픈을 표현</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="gamebar"><h3 class="game">고양이다방</h3><span class="when en"><b>AI 광고영상</b>2026.04</span></div>
+      <div class="visual">
+        <figure class="main"><img src="assets/catcafe_1.jpg" alt="고양이다방 AI 광고: 아늑한 고양이 카페 전경"></figure>
+        <div class="side">
+          <figure><img src="assets/catcafe_3.jpg" alt="AI 장면: 장난감 쥐를 노리는 두 아기 고양이"></figure>
+          <figure><img src="assets/catcafe_5.jpg" alt="AI 장면: 카페 문 앞에 선 손님의 발"></figure>
+          <figure><img src="assets/catcafe_6.jpg" alt="AI 장면: 벽 뒤에서 고개를 내민 아기 고양이"></figure>
+        </div>
+      </div>
+      <div class="body">
+        <div>
+          <h3>실사형 AI 광고영상</h3>
+          <div class="res"><span class="v num">+250<small>%</small></span><span class="d">설치 수 전월 대비</span></div>
+          <p class="cap">AI 광고영상 장면 캡처 (원본 4K)</p>
+        </div>
+        <dl class="steps">
+          <div><dt>GOAL</dt><dd>이스트게임즈의 SNG 게임 ‘고양이다방’ 신규 설치 확대</dd></div>
+          <div><dt>ROLE</dt><dd>게임 일러스트 대신 실사 고양이 카페 장면을 AI로 만들어, 고양이를 좋아하는 사람이 바로 멈춰 볼 수 있는 광고로 제작</dd></div>
+        </dl>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="gamebar"><h3 class="game en">CABAL ONLINE<span>카발 온라인</span></h3><span class="when en"><b>숏폼 바이럴</b>2025.11</span></div>
+      <div class="hookpanel">
+        <p class="hook">갑자기 17년 전 영상이<br>내 알고리즘에 떴는데..</p>
+        <div class="stats">
+          <div><span class="v num">1.2<small>만+</small></span><span class="d">좋아요 (바이럴 시점)</span></div>
+          <div><span class="v num">200+</span><span class="d">댓글</span></div>
+          <div><span class="v num">2.4<small>만</small></span><span class="d">좋아요 (광고 집행 후)</span></div>
+        </div>
+      </div>
+      <div class="body">
+        <div>
+          <h3>복귀 유저를 부른 숏폼 바이럴</h3>
+        </div>
+        <dl class="steps">
+          <div><dt>GOAL</dt><dd>예전에 CABAL을 즐겼던 유저의 추억을 건드려 복귀 유도</dd></div>
+          <div><dt>ROLE</dt><dd>유저 시점의 숏폼으로 기획·제작해 자연 확산(바이럴)을 만듦</dd></div>
+          <div><dt>NEXT</dt><dd>반응이 검증된 영상을 광고 소재로 다시 활용해 설치당 광고비 개선. 광고 집행 후 좋아요는 2.4만까지 늘었습니다.</dd></div>
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 02 MEASURE -->
+<section class="sec" id="measure">
+  <div class="in">
+    <div class="sechead">
+      <div><span class="idx en" aria-hidden="true">02 Measure</span><h2>매일 쌓이는 데이터로<br>운영 방향을 정했습니다</h2></div>
+      <p>CABAL 브랜드 사이트 광고를 기획부터 집행까지 맡고, 한국·일본·영어권 광고를 운영했습니다. 중국어 간체·번체 페이지 제작에도 참여했습니다. 매일 손으로 모으던 광고 데이터는 자동으로 쌓이도록 바꿨습니다.</p>
+    </div>
+
+    <div class="ops">
+      <span><b>CABAL</b>브랜드 사이트 · 한국 / 일본 / 영어권</span>
+      <span><b>CABAL MOBILE</b>일본 광고</span>
+      <span><b>CN</b>중국어 간체 · 번체 페이지</span>
+    </div>
+
+    <div class="pipe" role="list" aria-label="광고 데이터 자동화 흐름">
+      <div class="node" role="listitem"><span class="en">Source</span><strong>Google · Meta 광고</strong><p>캠페인별 노출, 클릭, 비용</p></div>
+      <div class="node" role="listitem"><span class="en">Source</span><strong>MMP 데이터</strong><p>설치, 인앱 결제 등 전환 성과</p></div>
+      <div class="node hl" role="listitem"><span class="en">Automation</span><strong>데일리 자동 수집</strong><p>매일 데이터를 모아 Google Sheets에 정리</p></div>
+      <div class="node" role="listitem"><span class="en">Decision</span><strong>모니터링 · 개선</strong><p>목표 지표 변경, 저효율 소재 조정</p></div>
+    </div>
+
+    <div class="cases">
+      <div class="case">
+        <p class="game en">CABAL<span>브랜드 사이트</span></p>
+        <h3>목표를 클릭 수에서 페이지 조회 수로</h3>
+        <p>클릭은 많은데 실제로 페이지를 보는 사람이 적다는 걸 모니터링으로 확인하고, 광고 운영 목표를 페이지 조회 수로 바꿨습니다.</p>
+        <div class="bars" role="img" aria-label="월 페이지 조회 수 약 1만 회에서 2만 회로 증가">
+          <div class="bar"><span>전환 전</span><div class="fill num" style="width:50%">약 1만</div></div>
+          <div class="bar after"><span>전환 후</span><div class="fill num" style="width:100%">약 2만</div></div>
+        </div>
+        <span class="delta num">+100%</span>
+        <span class="note">월 페이지 조회 수</span>
+      </div>
+      <div class="case">
+        <p class="game en">CABAL MOBILE<span>일본</span></p>
+        <h3>저효율 소재를 걸러 ROAS 개선</h3>
+        <p>소재별 성과를 매일 비교해 효율이 낮은 소재를 줄이고 잘 되는 소재에 예산을 모았습니다.</p>
+        <div class="bars" role="img" aria-label="광고 수익률 전월을 100으로 볼 때 120">
+          <div class="bar"><span>전월</span><div class="fill num" style="width:83.3%">100</div></div>
+          <div class="bar after"><span>개선 후</span><div class="fill num" style="width:100%">120</div></div>
+        </div>
+        <span class="delta num">+20%</span>
+        <span class="note">ROAS 전월 대비 · 전월 값을 100으로 놓은 지수</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SCALE -->
+<section class="sec" id="scale">
+  <div class="in">
+    <div class="sechead">
+      <div><span class="idx en" aria-hidden="true">03 Scale</span><h2>혼자 쓰던 AI를<br>팀이 쓰는 시스템으로</h2></div>
+      <p>광고를 만들며 쓰던 AI 제작 방식을 사내 공용 환경으로 옮겼습니다. 서버를 직접 구축하고, 반복 작업을 Skill로 묶어 배포해 마케팅 밖의 팀도 쓰고 있습니다.</p>
+    </div>
+
+    <div class="stack">
+      <div class="layer"><span class="en">Infra</span><h3>ComfyUI 공용 서버 구축</h3><ul><li>사내 공용 ComfyUI 서버를 직접 구축</li><li>FLUX 등 오픈소스 AI 모델로 이미지 생성·편집 환경 구성</li></ul></div>
+      <div class="layer"><span class="en">Skill</span><h3>제작 Skill 개발·배포</h3><ul><li>이미지 대량 생산, 편집 Skill 제작</li><li>반복되는 제작 과정을 자동화해 사내에 공유</li></ul></div>
+      <div class="layer"><span class="en">Users</span><h3>유관 부서로 확대</h3><ul><li>아트팀: 코스튬·아이템 제작</li><li>서비스팀: 콘텐츠 제작</li></ul><div class="chips"><span>마케팅팀</span><span>아트팀</span><span>서비스팀</span></div></div>
+    </div>
+
+    <div class="skill">
+      <div class="txt">
+        <span class="eyebrow">SKILL · OUTFIT SWAP</span>
+        <h3>캐릭터는 그대로,<br>의상만 바꾸기</h3>
+        <p>캐릭터 이미지와 의상 참고 이미지를 넣으면 얼굴과 포즈는 유지하고 옷만 갈아입힙니다. 사내 ComfyUI 서버에서 FLUX.2 Klein 모델로 돌아가는 Skill로, 아트팀의 코스튬 제작에 쓰이고 있습니다.</p>
+      </div>
+      <div class="ba">
+        <figure><img src="assets/skill_before.jpg" alt="작업 전: 흰 재킷과 체크 스커트를 입은 캐릭터"><figcaption><b>BEFORE</b>원본 캐릭터</figcaption></figure>
+        <figure><img src="assets/skill_after.jpg" alt="작업 후: 같은 캐릭터가 검은 후드 재킷과 회색 체크 교복을 입은 모습"><figcaption><b>AFTER</b>의상만 교체</figcaption></figure>
+        <figure><img src="assets/skill_costume.jpg" alt="다른 예시: 줄무늬 상의와 검은 마스크의 도둑 콘셉트 커플 코스튬"><figcaption><b>CASE</b>도둑 콘셉트 코스튬</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="tools"><span class="en">Tools</span><span>ComfyUI</span><span>FLUX</span><span>Google Ads</span><span>Meta Ads</span><span>MMP</span><span>Google Sheets 자동화</span></div>
+  </div>
+</section>
+
+<section class="closing" id="contact">
+  <div class="in">
+    <div style="display:grid;gap:24px;align-content:start">
+      <span class="eyebrow">WHY KRAFTON</span>
+      <blockquote>새로운 게임 경험을 만들어 온 크래프톤에서 <em>AI를 통해</em> 더 넓은 세대와 시장을 만나고 싶습니다.</blockquote>
+    </div>
+    <div>
+      <div class="contact">
+        <div class="row"><div><span class="en">Email</span><span class="addr" id="mail1">yomie0315@naver.com</span></div><button type="button" id="copy1" data-target="mail1">복사</button></div>
+        <div class="row"><div><span class="en">Email</span><span class="addr" id="mail2">weibaeg@gmail.com</span></div><button type="button" id="copy2" data-target="mail2">복사</button></div>
+      </div>
+      <div class="sign"><strong>백서연</strong><span>BECK SEO YEON</span></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="in">© 2026 백서연. 영상과 이미지의 저작권은 각 게임의 퍼블리셔에 있습니다.</div></footer>
+
+<script>
+document.querySelectorAll('.contact button').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.target);
+    var done=function(){btn.textContent='복사됨';setTimeout(function(){btn.textContent='복사'},1500)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+    try{navigator.clipboard.writeText(el.textContent).then(done,fallback)}catch(e){fallback()}
+  });
+});
+</script>
+</body>
+</html>
